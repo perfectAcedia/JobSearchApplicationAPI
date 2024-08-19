@@ -11,10 +11,13 @@ mongoose
     console.error('Database connection error:', error);
   });
 
+const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
 const LoginSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    match: [emailRegex, 'Invalid email address'],
   },
   password: {
     type: String,
@@ -23,10 +26,14 @@ const LoginSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: true,
+    min: 4,
+    max: 20,
   },
   jobTitle: {
     type: String,
     required: true,
+    min: 4,
+    max: 20,
   },
   additionalInformation: {
     type: String,
