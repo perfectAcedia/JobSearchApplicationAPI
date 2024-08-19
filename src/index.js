@@ -45,7 +45,6 @@ app.post('/login', async (req, res) => {
 
     const isPasswordMatch = user.password === password;
     if (isPasswordMatch) {
-      console.log(user);
       res.send(user);
     } else {
       throw new Error();
